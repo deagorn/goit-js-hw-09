@@ -8,10 +8,17 @@ refs.startBtn.addEventListener('click', onStartClick)
 refs.stopBtn.addEventListener('click', onStopClick)
 
 let timerId = null;
+let onClicked = true;
+refs.stopBtn.disabled = true;
 
 
 function onStartClick() {
-    timerId = setInterval(ChangingColorPage, 1000);
+    if (onClicked) {
+        onClicked = false;
+        refs.stopBtn.disabled = false;
+        timerId = setInterval(ChangingColorPage, 1000);
+    }
+    
 }
 
 function ChangingColorPage() {
@@ -22,7 +29,9 @@ function ChangingColorPage() {
 
 function onStopClick() {
     clearInterval(timerId);
+    onClicked = true;
     refs.startBtn.disabled = false;
+    refs.stopBtn.disabled = true;
 }
 
 function getRandomHexColor() {

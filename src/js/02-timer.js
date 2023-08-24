@@ -45,7 +45,7 @@ function onStartClick() {
 
 function interfaceUpdate() {
     dateNow = new Date().getTime();
-    if (dataUser - dateNow < 100) {
+    if (dataUser - dateNow <= 0) {
         clearInterval(timerId);
         return;
     }
